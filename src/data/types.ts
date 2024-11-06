@@ -1,7 +1,16 @@
+export enum StructureType {
+    Resource,
+    Army,
+    Defensive,
+    Trap,
+    Heroe,
+}
+
 export interface Structure {
     name: string;
     maxLevel: number;
     costs: number[];
+
     /** 
      * - e &rarr; elixir  
      * - c &rarr; coin 
@@ -10,11 +19,12 @@ export interface Structure {
      * eg: "ec" means that it can be bought with elixir and coins
     */
     payment: string; 
-}
 
-export interface AugmentedStructure extends Structure {
-    cost: number;
-    minimalLevel: number;
+    type: StructureType;
+
+    canAugment: boolean;
+    minLevelAugmet: number;
+    augmentCost: number;
 }
 
 export interface Townhall extends Structure {
@@ -22,3 +32,4 @@ export interface Townhall extends Structure {
     unlocks: string[];
     maxLevelBuilds: {build: string, level: number}[][];
 } 
+
